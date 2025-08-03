@@ -1,4 +1,4 @@
-module github.com/pawelgaczynski/giouring
+module github.com/gameshield/giouring
 
 go 1.20
 

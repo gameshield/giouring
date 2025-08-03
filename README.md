@@ -23,7 +23,7 @@ The **giouring** API is very similar to the [liburing](https://github.com/axboe/
 
 ### Documentation
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/pawelgaczynski/giouring.svg)](https://pkg.go.dev/github.com/pawelgaczynski/giouring)
+[![Go Reference](https://pkg.go.dev/badge/github.com/gameshield/giouring.svg)](https://pkg.go.dev/github.com/gameshield/giouring)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

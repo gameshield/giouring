@@ -29,7 +29,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/pawelgaczynski/giouring"
+	"github.com/gameshield/giouring"
 )
 
 const (
