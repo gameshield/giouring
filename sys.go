@@ -30,19 +30,45 @@ import (
 )
 
 func sysMmap(addr, length uintptr, prot, flags, fd int, offset int64) (unsafe.Pointer, error) {
-	ptr, err := mmap(addr, length, prot, flags, fd, offset)
-
-	return unsafe.Pointer(ptr), err
+	r0, _, errno := syscall.Syscall6(
+		syscall.SYS_MMAP,
+		addr,
+		length,
+		uintptr(prot),
+		uintptr(flags),
+		uintptr(fd),
+		uintptr(offset),
+	)
+	if errno != 0 {
+		return nil, errno
+	}
+	return unsafe.Pointer(r0), nil
 }
 
 func sysMunmap(addr, length uintptr) error {
-	return munmap(addr, length)
+	_, _, errno := syscall.Syscall(
+		syscall.SYS_MUNMAP,
+		addr,
+		length,
+		0,
+	)
+	if errno != 0 {
+		return errno
+	}
+	return nil
 }
 
-func sysMadvise(address, length, advice uintptr) error {
-	_, _, err := syscall.Syscall(syscall.SYS_MADVISE, address, length, advice)
-
-	return err
+func sysMadvise(addr, length, advice uintptr) error {
+	_, _, errno := syscall.Syscall(
+		syscall.SYS_MADVISE,
+		addr,
+		length,
+		advice,
+	)
+	if errno != 0 {
+		return errno
+	}
+	return nil
 }
 
 const liburingUdataTimeout uint64 = math.MaxUint64
